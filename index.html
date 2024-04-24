@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>La Deliziosa: An Italian Culinary Experience</title>
+    <style>
+       body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            padding-top: 50px; /* Push the content below the header */
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Ensure the header is on top of other content */
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        header h1 {
+            font-size: 32px; /* Increased font size for the restaurant name */
+            margin: 5px 0;
+            font-family: 'Arial Black', sans-serif; /* Updated font for the restaurant name */
+        }
+
+        header p {
+            font-size: 14px;
+            color: #888;
+            margin: 5px 0;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        main {
+            margin: 80px 20px 20px 20px; /* Adjust margin to accommodate the fixed header */
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .menu-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function checkout() {
+            var cartItems = document.getElementsByClassName('cart-item');
+            var total = 0;
+            for (var i = 0; i < cartItems.length; i++) {
+                var price = parseFloat(cartItems[i].getAttribute('data-price'));
+                total += price;
+            }
+            alert('Total: $' + total.toFixed(2) + '\n\nThank you for your order! Your delicious Italian dishes are on the way.');
+        }
+
+        function addToCart(itemName, price) {
+            var cart = document.getElementById('cart');
+            var item = document.createElement('div');
+            item.classList.add('cart-item');
+            item.setAttribute('data-price', price);
+            item.textContent = itemName + ' - $' + price.toFixed(2);
+            cart.appendChild(item);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>La Deliziosa</h1>
+            <p>An Italian Culinary Experience</p>
+            <input type="text" id="searchInput" onkeyup="searchDish()" aria-label="Search for Your Favorite Dish" placeholder="Search for Your Favorite Dish">
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2>Specialties</h2>
+            <div class="menu-items">
+                <!-- Recipe cards go here -->
+                <div class="menu-item">
+                    <h3>Spaghetti Carbonara</h3>
+                    <p>A classic Roman pasta dish made with eggs, cheese, pancetta, and black pepper.</p>
+                    <button onclick="addToCart('Spaghetti Carbonara', 12.99)">Add to Cart</button>
+                </div>
+                <div class="menu-item">
+                    <h3>Penne all'Arrabbiata</h3>
+                    <p>Penne pasta in a spicy tomato sauce with garlic and red chili peppers.</p>
+                    <button onclick="addToCart('Penne all\'Arrabbiata', 10.99)">Add to Cart</button>
+                </div>
+                <!-- Add more recipe cards here -->
+            </div>
+        </section>
+        <section>
+            <h2>Add to Cart & Checkout</h2>
+            <div id="cart" aria-label="Your Cart">
+                <h3>Your Cart</h3>
+                <!-- Cart items go here -->
+            </div>
+            <button onclick="checkout()">Proceed to Checkout</button>
+        </section>
+    </main>
+    <footer style="position: relative;">
+        <p>La Deliziosa</p>
+        <p>123 Main Street, City, State, Zip Code</p>
+        <p>Phone: 123-456-7890</p>
+    </footer>
+</body>
+</html>
